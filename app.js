@@ -9,7 +9,7 @@ class ToDoClass {
     }
 
     loadTasks() {
-    	let taskHTML = this.task.reduce((html, task, index) => html += this.generateTaskHtml(task, index), ''
+    	let taskHTML = this.tasks.reduce((html, task, index) => html += this.generateTaskHtml(task, index), ''
     	)
     	document.getElementById('taskList').innerHTML = taskHTML;
     }
@@ -21,15 +21,18 @@ class ToDoClass {
     				<div class="col-md-1 col-xs-1 col-lg-1 col-sm-1 checkbox">
     					<label>
     					<input id="toggleTaskStatus" type="checkbox"
-    						onChange="toDo.toogleTaskStatus(${index})" value="" class=""
+    						onchange="toDo.toogleTaskStatus(${index})" value="" class=""
     						${task.isCompleted ? 'checked' : ''}>
     					</label>
     				</div>
+    				<div class="col-md-10 col-xs-10 col-lg-10 col-sm-10 task-text ${task.isCompleted? 'complete': ''}">${task.task}</div>
                     <div class="col-md-1 col-xs-1 col-lg-1 col-sm-1 delete-icon-area">
                     	<a class="" href="/" onClick="toDo.deleteTask(event, ${index})">
                     		<i id="deleteTask" data-id="${index}" class="delete-icon glyphicon glyphicon-trash"></i>
                     	</a>
                     </div>
+                </div>
+            </li>
 
     	`;
     }
